@@ -1,0 +1,39 @@
+#!/bin/bash
+get_ZEPPELIN_ID() {
+  local ZEPPELIN_ID="$(ps -ef | grep "ZeppelinServer"| awk '{ print $2 }')"
+  echo "${ZEPPELIN_ID}"
+  return ${ZEPPELIN_ID}
+}
+
+is_running() {
+  local ZEPPELIN_ID="$(get_ZEPPELIN_ID)"
+  if [ "${ZEPPELIN_ID}" != "" ]; then
+    echo "true"
+    return 0
+  else
+    echo "false"
+    return 1
+  fi
+}
+
+echo -n "Stopping zeppelin"
+KILLCOUNT=1
+while [ ${KILLCOUNT} -le 5 ]; do
+  if [ "$(is_running)" == "true" ]; then
+    kill $(get_ZEPPELIN_ID)
+    echo -n '.'
+    sleep 5
+  else
+    break
+  fi
+  KILLCOUNT=$(( $KILLCOUNT + 1 ))
+done
+echo ''
+if [ "$(is_running)" == "true" ]; then
+  DAEMONPID=$(get_ZEPPELIN_ID)
+  echo "Nexus not responding to TERM signal (pid $DAEMONPID)"
+  exit 1
+else
+  echo "Nexus stopped"
+  exit 0
+fi
