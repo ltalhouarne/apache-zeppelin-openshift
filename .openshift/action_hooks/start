@@ -1,4 +1,3 @@
-
 #!/bin/bash
 get_ZEPPELIN_ID() {
   local ZEPPELIN_ID="$(ps -ef | grep "ZeppelinServer"| awk '{ print $2 }')"
