@@ -36,9 +36,9 @@ done
 echo ''
 if [ "$(is_running)" == "false" ]; then
   DAEMONPID=$(get_ZEPPELIN_ID)
-  echo "Error! Nexus not started after 25 seconds!"
+  echo "Error! Zeppelin not started after 25 seconds!"
   exit 1
 else
-  echo "Nexus started"
+  echo "Zeppelin started"
   exit 0
 fi

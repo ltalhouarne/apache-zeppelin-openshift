@@ -31,9 +31,9 @@ done
 echo ''
 if [ "$(is_running)" == "true" ]; then
   DAEMONPID=$(get_ZEPPELIN_ID)
-  echo "Nexus not responding to TERM signal (pid $DAEMONPID)"
+  echo "Zeppelin not responding to TERM signal (pid $DAEMONPID)"
   exit 1
 else
-  echo "Nexus stopped"
+  echo "Zeppelin stopped"
   exit 0
 fi
