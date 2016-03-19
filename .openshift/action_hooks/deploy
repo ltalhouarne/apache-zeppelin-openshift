@@ -3,7 +3,10 @@ set -x
 VERSION="0.5.6"
 
 echo "Downloading Zeppelin ${VERSION}..."
-wget http://apache.arvixe.com/incubator/zeppelin/${VERSION}-incubating/zeppelin-${VERSION}-incubating-bin-all.tgz
 cd ${OPENSHIFT_DATA_DIR}
-tar -xzf zeppelin-${VERSION}-incubating-bin-all.tgz
+wget http://apache.arvixe.com/incubator/zeppelin/${VERSION}-incubating/zeppelin-${VERSION}-incubating-bin-all.tgz -O ${OPENSHIFT_DATA_DIR}zeppelin-${VERSION}-bundle.tar.gz
+tar -xzf zeppelin-${VERSION}-bundle.tar.gz
 rm -f zeppelin-${VERSION}-incubating-bin-all.tgz
+cd conf
+mv zeppelin-site.xml.template zeppelin-site.xml
+sed -i -e "s/0.0.0.0/$OPENSHIFT_DIY_IP/g" zeppelin-site.xml

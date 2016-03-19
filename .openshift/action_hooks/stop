@@ -1,7 +1,7 @@
 #!/bin/bash
 get_ZEPPELIN_ID() {
-  local ZEPPELIN_ID="$(ps -ef | grep "ZeppelinServer"| awk '{ print $2 }')"
-  echo "${ZEPPELIN_ID}"
+  local ZEPPELIN_ID='$(ps aux | grep [Z]eppelinServer | awk "{ print \$2 }")'
+  echo "ID: ${ZEPPELIN_ID}"
   return ${ZEPPELIN_ID}
 }
 
