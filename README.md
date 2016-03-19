@@ -15,4 +15,4 @@ Openshift DIY cartridge for Apache's zeppelin
   
 5) After a successful installation, Zeppelin will be available at the following url:
 
-  https://zeppelin-<YOURDOMAIN>.rhcloud.com:8443/#/
+  https://zeppelin-YOURDOMAIN.rhcloud.com:8443/#/
